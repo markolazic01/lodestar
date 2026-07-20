@@ -9,7 +9,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://chainsafe.github.io/lodestar/images/favicon-512x512.png">
 <script src="https://plausible.io/js/script.js" defer="defer" data-domain="chainsafe.github.io/lodestar"></script><link rel="stylesheet" href="/lodestar/assets/css/styles.78a93a4a.css">
-<script src="/lodestar/assets/js/runtime~main.8bb2de70.js" defer="defer"></script>
+<script src="/lodestar/assets/js/runtime~main.3eebf893.js" defer="defer"></script>
 <script src="/lodestar/assets/js/main.6bd02079.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -181,10 +181,10 @@
 <p>type: <code>number</code></p>
 <p>default: <code>12000</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--builderfaultinspectionwindow"><code>--builder.faultInspectionWindow</code><a href="#--builderfaultinspectionwindow" class="hash-link" aria-label="Direct link to --builderfaultinspectionwindow" title="Direct link to --builderfaultinspectionwindow">​</a></h4>
-<p>Window to inspect missed slots for enabling/disabling builder circuit breaker</p>
+<p>Window to inspect missed slots (pre-gloas) or unrevealed payloads (post-gloas) for enabling/disabling builder circuit breaker</p>
 <p>type: <code>number</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--builderallowedfaults"><code>--builder.allowedFaults</code><a href="#--builderallowedfaults" class="hash-link" aria-label="Direct link to --builderallowedfaults" title="Direct link to --builderallowedfaults">​</a></h4>
-<p>Number of missed slots allowed in the <code>faultInspectionWindow</code> for builder circuit</p>
+<p>Number of missed slots (pre-gloas) or unrevealed payloads (post-gloas) allowed in the <code>faultInspectionWindow</code> for builder circuit</p>
 <p>type: <code>number</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--metrics"><code>--metrics</code><a href="#--metrics" class="hash-link" aria-label="Direct link to --metrics" title="Direct link to --metrics">​</a></h4>
 <p>Enable the Prometheus metrics HTTP server</p>
@@ -346,7 +346,7 @@
 <p>Percentage multiplier the block producing beacon node must apply to boost (&gt;100) or dampen (&lt;100) builder block value for selection against execution block. The multiplier is ignored if <code>--builder.selection</code> is set to anything other than <code>maxprofit</code></p>
 <p>type: <code>string</code></p>
 <p>default: <code>&quot;100&quot;</code></p>
-<h4 class="anchor anchorWithStickyNavbar_d3C5" id="--broadcastvalidation"><code>--broadcastValidation</code><a href="#--broadcastvalidation" class="hash-link" aria-label="Direct link to --broadcastvalidation" title="Direct link to --broadcastvalidation">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_d3C5" id="--broadcastvalidation"><code>--broadcastValidation</code><a href="#--broadcastvalidation" class="hash-link" aria-label="Direct link to --broadcastvalidation" title="Direct link to --broadcastvalidation">  ​</a></h4>
 <p>Validations to be run by beacon node for the signed block prior to publishing</p>
 <p>type: <code>string</code></p>
 <p>default: <code>&quot;gossip&quot;</code></p>
@@ -382,7 +382,7 @@
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--externalsignerpubkeys"><code>--externalSigner.pubkeys</code><a href="#--externalsignerpubkeys" class="hash-link" aria-label="Direct link to --externalsignerpubkeys" title="Direct link to --externalsignerpubkeys">​</a></h4>
 <p>List of validator public keys used by an external signer. May also provide a single string of comma-separated public keys</p>
 <p>type: <code>string[]</code></p>
-<h4 class="anchor anchorWithStickyNavbar_d3C5" id="--externalsignerfetch"><code>--externalSigner.fetch</code><a href="#--externalsignerfetch" class="hash-link" aria-label="Direct link to --externalsignerfetch" title="Direct link to --externalsignerfetch"> ​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_d3C5" id="--externalsignerfetch"><code>--externalSigner.fetch</code><a href="#--externalsignerfetch" class="hash-link" aria-label="Direct link to --externalsignerfetch" title="Direct link to --externalsignerfetch">​</a></h4>
 <p>Fetch the list of public keys to validate from external signer(s). Cannot be used in combination with <code>--externalSigner.pubkeys</code></p>
 <p>type: <code>boolean</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--externalsignerfetchinterval"><code>--externalSigner.fetchInterval</code><a href="#--externalsignerfetchinterval" class="hash-link" aria-label="Direct link to --externalsignerfetchinterval" title="Direct link to --externalsignerfetchinterval">​</a></h4>
