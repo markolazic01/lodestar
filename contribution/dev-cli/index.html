@@ -9,7 +9,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://chainsafe.github.io/lodestar/images/favicon-512x512.png">
 <script src="https://plausible.io/js/script.js" defer="defer" data-domain="chainsafe.github.io/lodestar"></script><link rel="stylesheet" href="/lodestar/assets/css/styles.78a93a4a.css">
-<script src="/lodestar/assets/js/runtime~main.8c8dda5e.js" defer="defer"></script>
+<script src="/lodestar/assets/js/runtime~main.a7ec0a85.js" defer="defer"></script>
 <script src="/lodestar/assets/js/main.fda76982.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -145,7 +145,7 @@
 <p>Number of epochs to retain finalized blobs/columns (minimum of MIN_EPOCHS_FOR_BLOB_SIDECARS_REQUESTS/MIN_EPOCHS_FOR_DATA_COLUMN_SIDECARS_REQUESTS)</p>
 <p>type: <code>number</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--chainprunehistory"><code>--chain.pruneHistory</code><a href="#--chainprunehistory" class="hash-link" aria-label="Direct link to --chainprunehistory" title="Direct link to --chainprunehistory">​</a></h4>
-<p>Continually prune finalized blocks older than <code>MIN_EPOCHS_FOR_BLOCK_REQUESTS</code> (33024 epochs / ~5 months on mainnet) and all archived states before the finalized epoch. This is useful to minimize disk usage when the node does not need to serve historical data. Initial pruning may be slow on first startup with an existing large database.</p>
+<p>Continually prune finalized blocks and execution payload envelopes older than <code>MIN_EPOCHS_FOR_BLOCK_REQUESTS</code> (33024 epochs / ~5 months on mainnet) and all archived states before the finalized epoch. This is useful to minimize disk usage when the node does not need to serve historical data. Initial pruning may be slow on first startup with an existing large database.</p>
 <p>type: <code>boolean</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--executionurls"><code>--execution.urls</code><a href="#--executionurls" class="hash-link" aria-label="Direct link to --executionurls" title="Direct link to --executionurls">​</a></h4>
 <p>Urls to execution client engine API</p>
@@ -232,7 +232,7 @@
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--listenaddress6"><code>--listenAddress6</code><a href="#--listenaddress6" class="hash-link" aria-label="Direct link to --listenaddress6" title="Direct link to --listenaddress6">​</a></h4>
 <p>The IPv6 address to listen for p2p UDP and TCP connections</p>
 <p>type: <code>string</code></p>
-<p>default: <code>&quot;::&quot;</code></p>
+<p>default: <code>&quot;:: if the host has a global IPv6 address&quot;</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--port6"><code>--port6</code><a href="#--port6" class="hash-link" aria-label="Direct link to --port6" title="Direct link to --port6">​</a></h4>
 <p>The TCP/UDP port to listen on. The UDP port can be modified by the --discoveryPort6 flag.</p>
 <p>type: <code>number</code></p>
@@ -269,7 +269,7 @@
 <p>Enable mdns local peer discovery</p>
 <p>type: <code>boolean</code></p>
 <p>default: <code>false</code></p>
-<h4 class="anchor anchorWithStickyNavbar_d3C5" id="--directpeers"><code>--directPeers</code><a href="#--directpeers" class="hash-link" aria-label="Direct link to --directpeers" title="Direct link to --directpeers">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_d3C5" id="--directpeers"><code>--directPeers</code><a href="#--directpeers" class="hash-link" aria-label="Direct link to --directpeers" title="Direct link to --directpeers">  ​</a></h4>
 <p>Direct peers for GossipSub mesh. These peers maintain permanent connections without GRAFT/PRUNE. Supports multiaddr with peer ID (e.g., <code>/ip4/192.168.1.1/tcp/9000/p2p/16Uiu2HAmKLhW7...</code>) or ENR (e.g., <code>enr:-IS4QHCYrYZbAKWCBRlAy5zzaDZXJBGkcnh4MHcBFZntXNFrdvJjX04jRzjzCBOo...</code>). Both peers must configure each other as direct peers for the feature to work properly.</p>
 <p>type: <code>string[]</code></p>
 <p>default: <code>[ &quot;[]&quot; ]</code></p>
@@ -355,7 +355,7 @@
 <p>type: <code>string</code></p>
 <p>default: <code>&quot;0&quot;</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--builderurls"><code>--builder.urls</code><a href="#--builderurls" class="hash-link" aria-label="Direct link to --builderurls" title="Direct link to --builderurls">​</a></h4>
-<p>URL(s) of external builders to request execution payload bids from. Auth data agreed with a builder may be appended as a hex fragment, e.g. <a href="https://builder.example.com#0x0123" target="_blank" rel="noopener noreferrer">https://builder.example.com#0x0123</a>, otherwise the UTF-8 bytes of the URL are used. Only used post-Gloas</p>
+<p>URL(s) of external builders to request execution payload bids from. Auth data agreed with a builder may be appended as a hex fragment, e.g. <a href="https://builder.example.com#0x0123" target="_blank" rel="noopener noreferrer">https://builder.example.com#0x0123</a>, otherwise the hostname of the URL is used. Only used post-Gloas</p>
 <p>type: <code>string[]</code></p>
 <h4 class="anchor anchorWithStickyNavbar_d3C5" id="--buildermaxexecutionpayment"><code>--builder.maxExecutionPayment</code><a href="#--buildermaxexecutionpayment" class="hash-link" aria-label="Direct link to --buildermaxexecutionpayment" title="Direct link to --buildermaxexecutionpayment">​</a></h4>
 <p>Maximum execution layer payment in Gwei counted toward a builder bid. A value of 0 means only trustless payments via the builder&#x27;s staked collateral count toward the bid. Values above 0 require <code>--allowDangerousTrustedPayments</code>. Only used post-Gloas</p>
